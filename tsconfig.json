@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "outDir": "dist",
+        "sourceMap": false,
+        "noUnusedLocals": true,
+        "noImplicitThis": true,
+        "noImplicitUseStrict": true,
+        "strictNullChecks": true,
+        "skipDefaultLibCheck": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "@types"
+    ]
+}

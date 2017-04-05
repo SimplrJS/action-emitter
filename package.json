@@ -1,0 +1,33 @@
+{
+  "name": "action-emitter",
+  "version": "0.0.1",
+  "description": "Action emitter like event emitter, but instead of string event types we use constructed classes.",
+  "main": "dist/action-emitter.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "test": "tsc -p . --noEmit",
+    "uglifyjs": "uglifyjs ./dist/action-emitter.js -o ./dist/action-emitter.min.js --compress --mangle",
+    "release": "npm run build && npm run uglifyjs"
+  },
+  "keywords": [
+    "action",
+    "emitter",
+    "fbemitter"
+  ],
+  "author": "Giedrius Grabauskas <giedrius@quatrodev.com> (https://github.com/GiedriusGrabauskas)",
+  "bugs": "https://github.com/SimplrJS/action-emitter/issues",
+  "repository": "SimplrJS/action-emitter",
+  "homepage": "https://github.com/SimplrJS/action-emitter",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fbemitter": "^2.0.32",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.2",
+    "uglify-js": "^2.8.21",
+    "webpack": "^2.3.3"
+  },
+  "dependencies": {
+    "fbemitter": "^2.1.1"
+  }
+}

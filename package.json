@@ -1,6 +1,6 @@
 {
   "name": "action-emitter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Action emitter based on fbemitter. Instead of string event types we use classes (functions).",
   "main": "dist/action-emitter.js",
   "types": "@types/index.d.ts",

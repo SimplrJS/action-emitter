@@ -18,6 +18,11 @@
     "fbemitter",
     "typescript"
   ],
+  "files": [
+    "@types",
+    "dist",
+    "**/*.md"
+  ],
   "author": "Giedrius Grabauskas <giedrius@quatrodev.com> (https://github.com/GiedriusGrabauskas)",
   "bugs": "https://github.com/SimplrJS/action-emitter/issues",
   "repository": "SimplrJS/action-emitter",

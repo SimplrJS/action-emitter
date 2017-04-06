@@ -55,7 +55,7 @@ let subsciption = Emitter.addListener<MyAction>(MyAction, action => {
 
 
 ## `once(actionClass, callback): EventSubscription`
-Similar to `addListener()` but the callback is removed after it is invoked once.
+Similar to `addListener()` but the callback is removed after it is invoked once. A subscription is returned that can be called to remove the listener.
 
 ### Arguments
 | Argument      | Type                        | Description                 |

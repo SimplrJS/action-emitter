@@ -132,7 +132,7 @@ var ActionEmitter = (function () {
     /**
      * Search action details by contructed action class.
      *
-     * @param action {TAction} Constructed action class.
+     * @param action {TAction} Action class instance.
      */
     ActionEmitter.prototype.searchActionDetailsByAction = function (action) {
         for (var i = 0; i < this.actionsList.length; i++) {
@@ -143,9 +143,9 @@ var ActionEmitter = (function () {
         }
     };
     /**
-     * Search action details by instance of action class.
+     * Search action details by Action class function.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     ActionEmitter.prototype.searchActionDetailsByActionClass = function (actionClass) {
         for (var i = 0; i < this.actionsList.length; i++) {
@@ -158,7 +158,7 @@ var ActionEmitter = (function () {
     /**
      * Return new ActionDetails object with initial values.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     ActionEmitter.prototype.createNewActionDetails = function (actionClass) {
         return {
@@ -207,9 +207,9 @@ var ActionEmitter = (function () {
     };
     /**
      * Register a specific callback to be called on a particular action event.
-     * A token is returned that can be used to remove the listener.
+     * A subscription is returned that can be called to remove the listener.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
     ActionEmitter.prototype.addListener = function (actionClass, listener) {
@@ -229,7 +229,7 @@ var ActionEmitter = (function () {
      * Emits an action event with the given data.
      * All callbacks that are listening to the particular action event will be notified.
      *
-     * @param action {TAction} Constructed action class.
+     * @param action {TAction} Action class instance.
      */
     ActionEmitter.prototype.emit = function (action) {
         var foundAction = this.searchActionDetailsByAction(action);
@@ -245,7 +245,7 @@ var ActionEmitter = (function () {
     /**
      * Return an array of listeners that are currently registered for the given action class.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     ActionEmitter.prototype.listeners = function (actionClass) {
         var foundAction = this.searchActionDetailsByActionClass(actionClass);
@@ -256,9 +256,9 @@ var ActionEmitter = (function () {
     };
     /**
      * Similar to addListener() but the callback is removed after it is invoked once.
-     * A token is returned that can be used to remove the listener.
+     * A subscription is returned that can be called to remove the listener.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
     ActionEmitter.prototype.once = function (actionClass, listener) {
@@ -283,7 +283,7 @@ var ActionEmitter = (function () {
      * Removes all of the registered listeners.
      * If provide actionClass, only listeners for that action class are removed.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     ActionEmitter.prototype.removeAllListeners = function (actionClass) {
         var eventType;

@@ -1,9 +1,9 @@
 import { Emitter } from "./emitter";
-import { Action } from "./action";
+import { MyAction } from "./my-action";
 
 
 // Removing only specified action listeners
-Emitter.removeAllListeners(Action);
+Emitter.removeAllListeners(MyAction);
 
 // Removing all listeners
 Emitter.removeAllListeners();

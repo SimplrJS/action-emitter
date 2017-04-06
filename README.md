@@ -1,5 +1,5 @@
 # action-emitter
-Action emitter based on [fbemitter](facebook/emitter). Instead of string event types we use classes (functions).
+Action emitter based on [fbemitter](https://github.com/facebook/emitter). Instead of string event types we use classes (functions).
 The package is most useful when used with [TypeScript](http://typescriptlang.org).
 
 [![Build Status](https://travis-ci.org/SimplrJS/action-emitter.svg?branch=master)](https://travis-ci.org/SimplrJS/action-emitter)
@@ -15,7 +15,7 @@ $ npm install action-emitter --save-dev
 First import the `action-emitter` package and then create a new emitter instance.
 ```ts
 import { ActionEmitter } from "action-emitter";
-let emitter = new ActionEmitter();
+const Emitter = new ActionEmitter();
 ```
 
 
@@ -26,7 +26,7 @@ Create a new emitter instance.
 
 ### Example
 ```ts
-let emitter = new ActionEmitter();
+const Emitter = new ActionEmitter();
 ```
 
 ## `addListener(actionClass, callback): EventSubscription`
@@ -41,14 +41,14 @@ Register a specific callback to be called on a particular action event. A token 
 
 ### Example
 ```ts
-class Action {
+class MyAction {
     constructor(private value: string) { }
     public get Value() {
         return this.value;
     }
 }
 
-let token = emitter.addListener<Action>(Action, (action) => {
+let token = Emitter.addListener<MyAction>(MyAction, action => {
     console.log(action.Value);
 });
 ```
@@ -65,14 +65,14 @@ Similar to `addListener()` but the callback is removed after it is invoked once.
 
 ### Example
 ```ts
-class Action {
+class MyAction {
     constructor(private value: string) { }
     public get Value() {
         return this.value;
     }
 }
 
-let token = emitter.once<Action>(Action, (action) => {
+let token = Emitter.once<MyAction>(MyAction, action => {
     console.log(action.Value);
 });
 ```
@@ -85,20 +85,21 @@ Removes all of the registered listeners. If provide `actionClass`, only listener
 | Argument                    | Type                        | Description                 |
 |-----------------------------|-----------------------------|-----------------------------|
 | `actionClass`<sup>[*]</sup> | `Function`                  | Action class function.      |
-<sup>[*]</sup> - not required.
+
+<sup>[*]</sup> - optional.
 
 ### Example
 ```ts
-class Action {
+class MyAction {
     constructor(private value: string) { }
     public get Value() {
         return this.value;
     }
 }
 
-emitter.removeAllListeners(Action);
+Emitter.removeAllListeners(MyAction);
 // Or
-emitter.removeAllListeners();
+Emitter.removeAllListeners();
 ```
 
 
@@ -120,9 +121,9 @@ class Action {
     }
 }
 
-emitter.removeAllListeners(Action);
+Emitter.removeAllListeners(Action);
 // Or
-emitter.removeAllListeners();
+Emitter.removeAllListeners();
 ```
 
 
@@ -137,16 +138,16 @@ Emits an action event with the given data. All callbacks that are listening to t
 
 ### Example
 ```ts
-class Action {
+class MyAction {
     constructor(private value: string) { }
     public get Value() {
         return this.value;
     }
 }
 
-emitter.emit<Test>(new Test("value"));
+Emitter.emit<MyAction>(new MyAction("value"));
 //or 
-emitter.emit(new Test("value"));
+Emitter.emit(new MyAction("value"));
 ```
 
 # License

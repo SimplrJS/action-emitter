@@ -1,5 +1,5 @@
 // Creating action class
-export class Action {
+export class MyAction {
     constructor(private firstValue: string, private secondValue: number) { }
 
     public get FirstValue() {

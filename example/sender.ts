@@ -1,7 +1,7 @@
 import { Emitter } from "./emitter";
-import { Action } from "./action";
+import { MyAction } from "./my-action";
 
 
-Emitter.emit(new Action("someString", 66));
+Emitter.emit(new MyAction("someString", 66));
 
-Emitter.emit(new Action("someString", 77));
+Emitter.emit(new MyAction("someString", 77));

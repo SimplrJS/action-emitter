@@ -14,7 +14,7 @@ export interface ActionDetails {
 const EVENT_TYPE_PREFIX = "ACTION_EMMITER";
 
 
-export class ActionEmmiter {
+export class ActionEmitter {
 
     private fbEmmiter = new EventEmitter();
     private actionsList = new Array<ActionDetails>();

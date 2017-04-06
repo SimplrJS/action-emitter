@@ -1,3 +1,4 @@
+import { AnyAction } from "action-emitter";
 import { MyAction } from "./my-action";
 import { Emitter } from "./emitter";
 
@@ -23,3 +24,9 @@ Emitter.once<MyAction>(MyAction, action => {
 let onceSubscription = Emitter.once<MyAction>(MyAction, action => { });
 // Removing once listener
 onceSubscription.remove();
+
+// Creating listener for any action
+Emitter.addListener(AnyAction, anyAction => {
+    let actionInstance = anyAction.Action;
+    console.log(actionInstance);
+});

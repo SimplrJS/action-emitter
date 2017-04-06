@@ -150,5 +150,16 @@ Emitter.emit<MyAction>(new MyAction("value"));
 Emitter.emit(new MyAction("value"));
 ```
 
+# Debuging
+You can listen all actions with `AnyAction` class. If you registered this action with `once`, then subscription remover does not work.
+```ts
+import { AnyAction } from "action-emitter";
+Emitter.addListener(AnyAction, anyAction => {
+    let actionInstance = anyAction.Action;
+    console.log(actionInstance);
+});
+```
+
+
 # License
 Released under the [MIT license](LICENSE).

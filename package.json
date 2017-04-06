@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Action emitter like event emitter, but instead of string event types we use constructed classes.",
   "main": "dist/action-emitter.js",
+  "types": "@types/index.d.ts",
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",

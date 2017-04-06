@@ -10,7 +10,9 @@
         "noImplicitThis": true,
         "noImplicitUseStrict": true,
         "strictNullChecks": true,
-        "skipDefaultLibCheck": true
+        "skipDefaultLibCheck": true,
+        "declaration": true,
+        "declarationDir": "@types"
     },
     "include": [
         "src/**/*"

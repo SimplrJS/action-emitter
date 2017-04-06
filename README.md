@@ -11,10 +11,10 @@ $ npm install action-emitter --save-dev
 ```
 
 # Usage
-First import the `actiont-emitter` package and then create a new emitter instance.
+First import the `action-emitter` package and then create a new emitter instance.
 ```ts
-import { EventEmitter } from "action-emitter";
-let emitter = new EventEmitter();
+import { ActionEmitter } from "action-emitter";
+let emitter = new ActionEmitter();
 ```
 
 
@@ -25,7 +25,7 @@ Create a new emitter instance.
 
 ### Example
 ```ts
-let emitter = new EventEmitter();
+let emitter = new ActionEmitter();
 ```
 
 ## `addListener(actionClass, callback): EventSubscription`

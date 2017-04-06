@@ -5,6 +5,7 @@
         "noImplicitAny": true,
         "removeComments": false,
         "outDir": "dist",
+        "rootDir": "src",
         "sourceMap": false,
         "noUnusedLocals": true,
         "noImplicitThis": true,
@@ -14,9 +15,6 @@
         "declaration": true,
         "declarationDir": "@types"
     },
-    "include": [
-        "src/**/*"
-    ],
     "exclude": [
         "node_modules",
         "dist",

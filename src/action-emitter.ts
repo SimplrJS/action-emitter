@@ -31,7 +31,7 @@ export class ActionEmitter {
 
     /**
      * Search action details by contructed action class.
-     * 
+     *
      * @param action {TAction} Constructed action class.
      */
     private searchActionDetailsByAction<TAction>(action: TAction): ActionDetails | undefined {
@@ -46,7 +46,7 @@ export class ActionEmitter {
 
     /**
      * Search action details by instance of action class.
-     * 
+     *
      * @param actionClass {Function} Instance of action class.
      */
     private searchActionDetailsByActionClass(actionClass: Function): ActionDetails | undefined {
@@ -61,7 +61,7 @@ export class ActionEmitter {
 
     /**
      * Return new ActionDetails object with initial values.
-     * 
+     *
      * @param actionClass {Function} Instance of action class.
      */
     private createNewActionDetails(actionClass: Function): ActionDetails {
@@ -77,9 +77,9 @@ export class ActionEmitter {
      * Call proxy subscription remover if proxySubscription provided.
      * Decrease actionDetails listeners length.
      * Remove action from actionsList if listeners list is empty.
-     * 
-     * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.  
-     * @param proxySubscription {EventSubscription}  
+     *
+     * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.
+     * @param proxySubscription {EventSubscription}
      */
     private subscriptionRemover(actionDetails?: ActionDetails, proxySubscription?: EventSubscription) {
         if (proxySubscription != null) {
@@ -98,8 +98,8 @@ export class ActionEmitter {
 
     /**
      * Delete actionDetails and filter actionList.
-     * 
-     * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.  
+     *
+     * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.
      */
     private removeActionListeners(actionDetails: ActionDetails | undefined): void {
         actionDetails = undefined;
@@ -109,7 +109,7 @@ export class ActionEmitter {
 
     /**
      * Reset actionsList and start uniqueEventTypeNumber from zero.
-     * 
+     *
      */
     private removeAllActionsListeners() {
         this.actionsList = new Array<ActionDetails>();
@@ -118,9 +118,9 @@ export class ActionEmitter {
 
 
     /**
-     * Register a specific callback to be called on a particular action event. 
+     * Register a specific callback to be called on a particular action event.
      * A token is returned that can be used to remove the listener.
-     * 
+     *
      * @param actionClass {Function} Instance of action class.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
@@ -150,7 +150,7 @@ export class ActionEmitter {
     /**
      * Emits an action event with the given data.
      * All callbacks that are listening to the particular action event will be notified.
-     * 
+     *
      * @param action {TAction} Constructed action class.
      */
     public emit<TAction>(action: TAction): void {
@@ -169,7 +169,7 @@ export class ActionEmitter {
 
     /**
      * Return an array of listeners that are currently registered for the given action class.
-     * 
+     *
      * @param actionClass {Function} Instance of action class.
      */
     public listeners(actionClass: Function): Array<Function> {
@@ -182,9 +182,9 @@ export class ActionEmitter {
 
 
     /**
-     * Similar to addListener() but the callback is removed after it is invoked once. 
+     * Similar to addListener() but the callback is removed after it is invoked once.
      * A token is returned that can be used to remove the listener.
-     * 
+     *
      * @param actionClass {Function} Instance of action class.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
@@ -212,9 +212,9 @@ export class ActionEmitter {
 
 
     /**
-     * Removes all of the registered listeners. 
+     * Removes all of the registered listeners.
      * If provide actionClass, only listeners for that action class are removed.
-     * 
+     *
      * @param actionClass {Function} Instance of action class.
      */
     public removeAllListeners(actionClass?: Function): void {

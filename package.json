@@ -6,8 +6,9 @@
   "types": "@types/index.d.ts",
   "scripts": {
     "build": "webpack",
+    "tslint": "tslint --project . --config ./tslint.json",
     "watch": "webpack --watch",
-    "test": "tsc -p . --noEmit",
+    "test": "tsc -p . --noEmit && npm run tslint",
     "uglifyjs": "uglifyjs ./dist/action-emitter.js -o ./dist/action-emitter.min.js --compress --mangle",
     "release": "npm run build && npm run uglifyjs"
   },
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@types/fbemitter": "^2.0.32",
     "ts-loader": "^2.0.3",
+    "tslint": "^5.0.0",
     "typescript": "^2.2.2",
     "uglify-js": "^2.8.21",
     "webpack": "^2.3.3"

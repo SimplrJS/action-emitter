@@ -1,6 +1,7 @@
 import { MyAction } from "./my-action";
 import { Emitter } from "./emitter";
 
+
 // Creating listener
 let subscription = Emitter.addListener<MyAction>(MyAction, action => {
     console.log(`Action emitted with someValue: ${action.SomeValue} and secondValue: ${action.SecondValue}.`);
@@ -10,6 +11,7 @@ let subscription = Emitter.addListener<MyAction>(MyAction, action => {
         subscription.remove();
     }
 });
+
 
 // Createing once listener
 Emitter.once<MyAction>(MyAction, action => {

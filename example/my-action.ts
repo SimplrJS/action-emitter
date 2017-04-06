@@ -1,3 +1,4 @@
+
 // Creating action class
 export class MyAction {
     constructor(private firstValue: string, private secondValue: number) { }

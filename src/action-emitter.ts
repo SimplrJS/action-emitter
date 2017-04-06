@@ -32,7 +32,7 @@ export class ActionEmitter {
     /**
      * Search action details by contructed action class.
      *
-     * @param action {TAction} Constructed action class.
+     * @param action {TAction} Action class instance.
      */
     private searchActionDetailsByAction<TAction>(action: TAction): ActionDetails | undefined {
         for (let i = 0; i < this.actionsList.length; i++) {
@@ -45,9 +45,9 @@ export class ActionEmitter {
 
 
     /**
-     * Search action details by instance of action class.
+     * Search action details by Action class function.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     private searchActionDetailsByActionClass(actionClass: Function): ActionDetails | undefined {
         for (let i = 0; i < this.actionsList.length; i++) {
@@ -62,7 +62,7 @@ export class ActionEmitter {
     /**
      * Return new ActionDetails object with initial values.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     private createNewActionDetails(actionClass: Function): ActionDetails {
         return {
@@ -121,7 +121,7 @@ export class ActionEmitter {
      * Register a specific callback to be called on a particular action event.
      * A token is returned that can be used to remove the listener.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
     public addListener<TAction>(actionClass: Function, listener: ListenerFunction<TAction>): EventSubscription {
@@ -151,7 +151,7 @@ export class ActionEmitter {
      * Emits an action event with the given data.
      * All callbacks that are listening to the particular action event will be notified.
      *
-     * @param action {TAction} Constructed action class.
+     * @param action {TAction} Action class instance.
      */
     public emit<TAction>(action: TAction): void {
         let foundAction = this.searchActionDetailsByAction(action);
@@ -170,7 +170,7 @@ export class ActionEmitter {
     /**
      * Return an array of listeners that are currently registered for the given action class.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     public listeners(actionClass: Function): Array<Function> {
         let foundAction = this.searchActionDetailsByActionClass(actionClass);
@@ -185,7 +185,7 @@ export class ActionEmitter {
      * Similar to addListener() but the callback is removed after it is invoked once.
      * A token is returned that can be used to remove the listener.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
     public once<TAction>(actionClass: Function, listener: ListenerFunction<TAction>): EventSubscription {
@@ -215,7 +215,7 @@ export class ActionEmitter {
      * Removes all of the registered listeners.
      * If provide actionClass, only listeners for that action class are removed.
      *
-     * @param actionClass {Function} Instance of action class.
+     * @param actionClass {Function} Action class function.
      */
     public removeAllListeners(actionClass?: Function): void {
         let eventType: string | undefined;

@@ -1,5 +1,6 @@
 # action-emitter
-Action emitter based on [fbemitter](facebook/emitter). Instead of string event types we use constructed classes.
+Action emitter based on [fbemitter](facebook/emitter). Instead of string event types we use classes (functions).
+The package is most useful when used with [TypeScript](http://typescriptlang.org).
 
 [![Build Status](https://travis-ci.org/SimplrJS/action-emitter.svg?branch=master)](https://travis-ci.org/SimplrJS/action-emitter)
 [![NPM version](http://img.shields.io/npm/v/action-emitter.svg)](https://www.npmjs.com/package/action-emitter) [![dependencies Status](https://david-dm.org/simplrjs/action-emitter/status.svg)](https://david-dm.org/simplrjs/action-emitter) [![devDependencies Status](https://david-dm.org/simplrjs/action-emitter/dev-status.svg)](https://david-dm.org/simplrjs/action-emitter?type=dev)
@@ -34,7 +35,7 @@ Register a specific callback to be called on a particular action event. A token 
 ### Arguments
 | Argument      | Type                        | Description                 |
 |---------------|-----------------------------|-----------------------------|
-| `actionClass` | `Function`                  | Instance of action class.   |
+| `actionClass` | `Function`                  | Action class function.      |
 | `callback`    | `(action: TAction) => void` | Listener callback function. |
 
 
@@ -54,12 +55,12 @@ let token = emitter.addListener<Action>(Action, (action) => {
 
 
 ## `once(actionClass, callback): EventSubscription`
-Similar to `addListener()` but the callback is removed after it is invoked once. Similar to addListener() but the callback is removed after it is invoked once.
+Similar to `addListener()` but the callback is removed after it is invoked once. Similar to `addListener()` but the callback is removed after it is invoked once.
 
 ### Arguments
 | Argument      | Type                        | Description                 |
 |---------------|-----------------------------|-----------------------------|
-| `actionClass` | `Function`                  | Instance of action class.   |
+| `actionClass` | `Function`                  | Action class function.      |
 | `callback`    | `(action: TAction) => void` | Listener callback function. |
 
 ### Example
@@ -83,7 +84,7 @@ Removes all of the registered listeners. If provide `actionClass`, only listener
 ### Arguments
 | Argument                    | Type                        | Description                 |
 |-----------------------------|-----------------------------|-----------------------------|
-| `actionClass`<sup>[*]</sup> | `Function`                  | Instance of action class.   |
+| `actionClass`<sup>[*]</sup> | `Function`                  | Action class function.      |
 <sup>[*]</sup> - not required.
 
 ### Example
@@ -107,7 +108,7 @@ Return an array of listeners that are currently registered for the given action 
 ### Arguments
 | Argument      | Type                        | Description                 |
 |---------------|-----------------------------|-----------------------------|
-| `actionClass` | `Function`                  | Instance of action class.   |
+| `actionClass` | `Function`                  | Action class function.      |
 
 
 ### Example
@@ -131,7 +132,7 @@ Emits an action event with the given data. All callbacks that are listening to t
 ### Arguments
 | Argument      | Type      | Description                 |
 |---------------|-----------|-----------------------------|
-| `action`      | `TAction` | Constructed action class.   |
+| `action`      | `TAction` | Action class instance.      |
 
 
 ### Example

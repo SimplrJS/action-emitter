@@ -119,7 +119,7 @@ export class ActionEmitter {
 
     /**
      * Register a specific callback to be called on a particular action event.
-     * A token is returned that can be used to remove the listener.
+     * A subscription is returned that can be called to remove the listener.
      *
      * @param actionClass {Function} Action class function.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
@@ -183,7 +183,7 @@ export class ActionEmitter {
 
     /**
      * Similar to addListener() but the callback is removed after it is invoked once.
-     * A token is returned that can be used to remove the listener.
+     * A subscription is returned that can be called to remove the listener.
      *
      * @param actionClass {Function} Action class function.
      * @param listener {ListenerFunction<TAction>} Listener callback function.

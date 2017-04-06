@@ -30,7 +30,7 @@ const Emitter = new ActionEmitter();
 ```
 
 ## `addListener(actionClass, callback): EventSubscription`
-Register a specific callback to be called on a particular action event. A token is returned that can be used to remove the listener.
+Register a specific callback to be called on a particular action event. A subscription is returned that can be called to remove the listener.
 
 ### Arguments
 | Argument      | Type                        | Description                 |
@@ -48,14 +48,14 @@ class MyAction {
     }
 }
 
-let token = Emitter.addListener<MyAction>(MyAction, action => {
+let subsciption = Emitter.addListener<MyAction>(MyAction, action => {
     console.log(action.Value);
 });
 ```
 
 
 ## `once(actionClass, callback): EventSubscription`
-Similar to `addListener()` but the callback is removed after it is invoked once. Similar to `addListener()` but the callback is removed after it is invoked once.
+Similar to `addListener()` but the callback is removed after it is invoked once.
 
 ### Arguments
 | Argument      | Type                        | Description                 |
@@ -72,7 +72,7 @@ class MyAction {
     }
 }
 
-let token = Emitter.once<MyAction>(MyAction, action => {
+let subsciption = Emitter.once<MyAction>(MyAction, action => {
     console.log(action.Value);
 });
 ```
@@ -82,9 +82,9 @@ let token = Emitter.once<MyAction>(MyAction, action => {
 Removes all of the registered listeners. If provide `actionClass`, only listeners for that action class are removed.
 
 ### Arguments
-| Argument                    | Type                        | Description                 |
-|-----------------------------|-----------------------------|-----------------------------|
-| `actionClass`<sup>[*]</sup> | `Function`                  | Action class function.      |
+| Argument                    | Type        | Description                 |
+|-----------------------------|-------------|-----------------------------|
+| `actionClass`<sup>[*]</sup> | `Function`  | Action class function.      |
 
 <sup>[*]</sup> - optional.
 
@@ -107,9 +107,9 @@ Emitter.removeAllListeners();
 Return an array of listeners that are currently registered for the given action class.
 
 ### Arguments
-| Argument      | Type                        | Description                 |
-|---------------|-----------------------------|-----------------------------|
-| `actionClass` | `Function`                  | Action class function.      |
+| Argument      | Type       | Description                 |
+|---------------|------------|-----------------------------|
+| `actionClass` | `Function` | Action class function.      |
 
 
 ### Example

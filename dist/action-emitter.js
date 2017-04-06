@@ -1,4 +1,14 @@
-(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("fbemitter"));
+	else if(typeof define === 'function' && define.amd)
+		define(["fbemitter"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("fbemitter")) : factory(root["fbemitter"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -103,13 +113,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fbemitter_1 = __webpack_require__(3);
 var any_action_1 = __webpack_require__(0);
 var EVENT_TYPE_PREFIX = "ACTION_EMMITER";
-var ActionEmmiter = (function () {
-    function ActionEmmiter() {
+var ActionEmitter = (function () {
+    function ActionEmitter() {
         this.fbEmmiter = new fbemitter_1.EventEmitter();
         this.actionsList = new Array();
         this.uniqueEventTypeNumber = 0;
     }
-    Object.defineProperty(ActionEmmiter.prototype, "getNextEventType", {
+    Object.defineProperty(ActionEmitter.prototype, "getNextEventType", {
         /**
          * Generate and return next event type unique string.
          */
@@ -124,7 +134,7 @@ var ActionEmmiter = (function () {
      *
      * @param action {TAction} Constructed action class.
      */
-    ActionEmmiter.prototype.searchActionDetailsByAction = function (action) {
+    ActionEmitter.prototype.searchActionDetailsByAction = function (action) {
         for (var i = 0; i < this.actionsList.length; i++) {
             var actionDetails = this.actionsList[i];
             if (action instanceof actionDetails.ActionClass) {
@@ -137,7 +147,7 @@ var ActionEmmiter = (function () {
      *
      * @param actionClass {Function} Instance of action class.
      */
-    ActionEmmiter.prototype.searchActionDetailsByActionClass = function (actionClass) {
+    ActionEmitter.prototype.searchActionDetailsByActionClass = function (actionClass) {
         for (var i = 0; i < this.actionsList.length; i++) {
             var actionDetails = this.actionsList[i];
             if (actionDetails.ActionClass === actionClass) {
@@ -150,7 +160,7 @@ var ActionEmmiter = (function () {
      *
      * @param actionClass {Function} Instance of action class.
      */
-    ActionEmmiter.prototype.createNewActionDetails = function (actionClass) {
+    ActionEmitter.prototype.createNewActionDetails = function (actionClass) {
         return {
             ActionClass: actionClass,
             EventType: this.getNextEventType,
@@ -165,7 +175,7 @@ var ActionEmmiter = (function () {
      * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.
      * @param proxySubscription {EventSubscription}
      */
-    ActionEmmiter.prototype.subscriptionRemover = function (actionDetails, proxySubscription) {
+    ActionEmitter.prototype.subscriptionRemover = function (actionDetails, proxySubscription) {
         if (proxySubscription != null) {
             proxySubscription.remove();
         }
@@ -183,7 +193,7 @@ var ActionEmmiter = (function () {
      *
      * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.
      */
-    ActionEmmiter.prototype.removeActionListeners = function (actionDetails) {
+    ActionEmitter.prototype.removeActionListeners = function (actionDetails) {
         actionDetails = undefined;
         this.actionsList.filter(function (x) { return x != null; });
     };
@@ -191,7 +201,7 @@ var ActionEmmiter = (function () {
      * Reset actionsList and start uniqueEventTypeNumber from zero.
      *
      */
-    ActionEmmiter.prototype.removeAllActionsListeners = function () {
+    ActionEmitter.prototype.removeAllActionsListeners = function () {
         this.actionsList = new Array();
         this.uniqueEventTypeNumber = 0;
     };
@@ -202,7 +212,7 @@ var ActionEmmiter = (function () {
      * @param actionClass {Function} Instance of action class.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
-    ActionEmmiter.prototype.addListener = function (actionClass, listener) {
+    ActionEmitter.prototype.addListener = function (actionClass, listener) {
         var foundActionDetails = this.searchActionDetailsByActionClass(actionClass);
         if (foundActionDetails == null) {
             var index = this.actionsList.push(this.createNewActionDetails(actionClass)) - 1;
@@ -221,7 +231,7 @@ var ActionEmmiter = (function () {
      *
      * @param action {TAction} Constructed action class.
      */
-    ActionEmmiter.prototype.emit = function (action) {
+    ActionEmitter.prototype.emit = function (action) {
         var foundAction = this.searchActionDetailsByAction(action);
         if (foundAction != null) {
             this.fbEmmiter.emit(foundAction.EventType, action);
@@ -237,7 +247,7 @@ var ActionEmmiter = (function () {
      *
      * @param actionClass {Function} Instance of action class.
      */
-    ActionEmmiter.prototype.listeners = function (actionClass) {
+    ActionEmitter.prototype.listeners = function (actionClass) {
         var foundAction = this.searchActionDetailsByActionClass(actionClass);
         if (foundAction != null) {
             return this.fbEmmiter.listeners(foundAction.EventType);
@@ -251,7 +261,7 @@ var ActionEmmiter = (function () {
      * @param actionClass {Function} Instance of action class.
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
-    ActionEmmiter.prototype.once = function (actionClass, listener) {
+    ActionEmitter.prototype.once = function (actionClass, listener) {
         var _this = this;
         var foundActionDetails = this.searchActionDetailsByActionClass(actionClass);
         if (foundActionDetails == null) {
@@ -275,7 +285,7 @@ var ActionEmmiter = (function () {
      *
      * @param actionClass {Function} Instance of action class.
      */
-    ActionEmmiter.prototype.removeAllListeners = function (actionClass) {
+    ActionEmitter.prototype.removeAllListeners = function (actionClass) {
         var eventType;
         var foundActionDetails;
         if (actionClass != null) {
@@ -293,9 +303,9 @@ var ActionEmmiter = (function () {
             this.removeAllActionsListeners();
         }
     };
-    return ActionEmmiter;
+    return ActionEmitter;
 }());
-exports.ActionEmmiter = ActionEmmiter;
+exports.ActionEmitter = ActionEmitter;
 
 
 /***/ }),
@@ -303,8 +313,8 @@ exports.ActionEmmiter = ActionEmmiter;
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var action_emmiter_1 = __webpack_require__(1);
-exports.ActionEmmiter = action_emmiter_1.ActionEmmiter;
+var action_emitter_1 = __webpack_require__(1);
+exports.ActionEmitter = action_emitter_1.ActionEmitter;
 var any_action_1 = __webpack_require__(0);
 exports.AnyAction = any_action_1.AnyAction;
 
@@ -313,7 +323,8 @@ exports.AnyAction = any_action_1.AnyAction;
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("fbemitter");
+module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ })
-/******/ ])));
+/******/ ]);
+});

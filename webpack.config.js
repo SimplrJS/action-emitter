@@ -2,7 +2,7 @@ module.exports = {
     entry: "./src/index.ts",
     output: {
         filename: "./dist/action-emitter.js",
-        libraryTarget: "commonjs"
+        libraryTarget: "umd"
     },
     module: {
         rules: [

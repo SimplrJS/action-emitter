@@ -5,7 +5,7 @@ export interface ActionDetails {
     EventType: string;
     ListenersLength: number;
 }
-export declare class ActionEmmiter {
+export declare class ActionEmitter {
     private fbEmmiter;
     private actionsList;
     private uniqueEventTypeNumber;

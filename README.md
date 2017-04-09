@@ -140,18 +140,14 @@ Emits an action event with the given data. All callbacks that are listening to t
 ```ts
 import { ActionEmitter } from "action-emitter";
 
+const Emitter = new ActionEmitter();
+
 class MyAction {
     constructor(private value: string) { }
     public get Value() {
         return this.value;
     }
 }
-
-const Emitter = new ActionEmitter();
-
-let subsciption = Emitter.addListener<MyAction>(MyAction, action => {
-    console.log(action.Value);
-});
 
 Emitter.emit<MyAction>(new MyAction("value"));
 //or 

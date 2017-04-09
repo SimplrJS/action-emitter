@@ -39,7 +39,7 @@ Register a specific callback to be called on a particular action event. A subscr
 | `callback`    | `(action: TAction) => void` | Listener callback function. |
 
 
-#### Add listeners example:
+#### Add listener example:
 ```ts
 class MyAction {
     constructor(private value: string) { }

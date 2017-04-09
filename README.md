@@ -104,7 +104,7 @@ Emitter.removeAllListeners();
 
 
 ## `listeners(actionClass): Function[]`
-Return an array of listeners that are currently registered for the given action class.
+Returns an array of listeners that are currently registered for the given action class.
 
 ### Arguments
 | Argument      | Type       | Description                 |

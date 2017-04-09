@@ -29,7 +29,6 @@
   "homepage": "https://github.com/SimplrJS/action-emitter",
   "license": "MIT",
   "devDependencies": {
-    "@types/fbemitter": "^2.0.32",
     "ts-loader": "^2.0.3",
     "tslint": "^5.0.0",
     "typescript": "^2.2.2",
@@ -37,6 +36,7 @@
     "webpack": "^2.3.3"
   },
   "dependencies": {
+    "@types/fbemitter": "^2.0.32",
     "fbemitter": "^2.1.1"
   }
 }

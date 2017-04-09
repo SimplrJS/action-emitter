@@ -117,6 +117,11 @@ export class ActionEmitter {
     }
 
 
+    private isValidFunction(maybeFunction: any): boolean {
+        return typeof maybeFunction === "function";
+    }
+
+
     /**
      * Register a specific callback to be called on a particular action event.
      * A subscription is returned that can be called to remove the listener.
@@ -125,6 +130,14 @@ export class ActionEmitter {
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
     public addListener<TAction>(actionClass: Function, listener: ListenerFunction<TAction>): EventSubscription {
+        if (!this.isValidFunction(actionClass)) {
+            throw new Error("ActionEmitter.addListener(): `actionClass` is not a class or function.");
+        }
+
+        if (!this.isValidFunction(listener)) {
+            throw new Error("ActionEmitter.addListener(): `listener` is not a function.");
+        }
+
         let foundActionDetails = this.searchActionDetailsByActionClass(actionClass);
 
         if (foundActionDetails == null) {
@@ -154,6 +167,10 @@ export class ActionEmitter {
      * @param action {TAction} Action class instance.
      */
     public emit<TAction>(action: TAction): void {
+        if (typeof action !== "object") {
+            throw new Error("ActioEmiter.emit(): `action` is not a proper object.");
+        }
+
         let foundAction = this.searchActionDetailsByAction(action);
         if (foundAction != null) {
             this.fbEmmiter.emit(foundAction.EventType, action);
@@ -180,7 +197,6 @@ export class ActionEmitter {
         return [];
     }
 
-
     /**
      * Similar to addListener() but the callback is removed after it is invoked once.
      * A subscription is returned that can be called to remove the listener.
@@ -189,6 +205,14 @@ export class ActionEmitter {
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
     public once<TAction>(actionClass: Function, listener: ListenerFunction<TAction>): EventSubscription {
+        if (!this.isValidFunction(actionClass)) {
+            throw new Error("ActionEmitter.once(): `actionClass` is not a class or function.");
+        }
+
+        if (!this.isValidFunction(listener)) {
+            throw new Error("ActionEmitter.once(): `listener` is not a function.");
+        }
+
         let foundActionDetails = this.searchActionDetailsByActionClass(actionClass);
 
         if (foundActionDetails == null) {

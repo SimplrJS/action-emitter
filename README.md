@@ -6,12 +6,12 @@ The package is most useful when used with [TypeScript](http://typescriptlang.org
 [![NPM version](http://img.shields.io/npm/v/action-emitter.svg)](https://www.npmjs.com/package/action-emitter) [![dependencies Status](https://david-dm.org/simplrjs/action-emitter/status.svg)](https://david-dm.org/simplrjs/action-emitter) [![devDependencies Status](https://david-dm.org/simplrjs/action-emitter/dev-status.svg)](https://david-dm.org/simplrjs/action-emitter?type=dev)
 
 
-# Get started
+## Get started
 ```cmd
 $ npm install action-emitter --save-dev
 ```
 
-# Usage
+## Usage
 First import the `action-emitter` package and then create a new emitter instance.
 ```ts
 import { ActionEmitter } from "action-emitter";
@@ -19,27 +19,27 @@ const Emitter = new ActionEmitter();
 ```
 
 
-# API
+## API
 
-## `constructor(): void`
+### `constructor(): void`
 Create a new emitter instance.
 
-### Example
+#### Emitter construction example:
 ```ts
 const Emitter = new ActionEmitter();
 ```
 
-## `addListener(actionClass, callback): EventSubscription`
+### `addListener(actionClass, callback): EventSubscription`
 Register a specific callback to be called on a particular action event. A subscription is returned that can be called to remove the listener.
 
-### Arguments
+#### Arguments
 | Argument      | Type                        | Description                 |
 |---------------|-----------------------------|-----------------------------|
 | `actionClass` | `Function`                  | Action class function.      |
 | `callback`    | `(action: TAction) => void` | Listener callback function. |
 
 
-### Example
+#### Add listeners example:
 ```ts
 class MyAction {
     constructor(private value: string) { }
@@ -54,16 +54,16 @@ let subsciption = Emitter.addListener<MyAction>(MyAction, action => {
 ```
 
 
-## `once(actionClass, callback): EventSubscription`
+### `once(actionClass, callback): EventSubscription`
 Similar to `addListener()` but the callback is removed after it is invoked once. A subscription is returned that can be called to remove the listener.
 
-### Arguments
+#### Arguments
 | Argument      | Type                        | Description                 |
 |---------------|-----------------------------|-----------------------------|
 | `actionClass` | `Function`                  | Action class function.      |
 | `callback`    | `(action: TAction) => void` | Listener callback function. |
 
-### Example
+#### Add once listener example:
 ```ts
 class MyAction {
     constructor(private value: string) { }
@@ -78,17 +78,17 @@ let subsciption = Emitter.once<MyAction>(MyAction, action => {
 ```
 
 
-## `removeAllListeners(actionClass): void`
+### `removeAllListeners(actionClass): void`
 Removes all of the registered listeners. If provide `actionClass`, only listeners for that action class are removed.
 
-### Arguments
+#### Arguments
 | Argument                    | Type        | Description                 |
 |-----------------------------|-------------|-----------------------------|
 | `actionClass`<sup>[*]</sup> | `Function`  | Action class function.      |
 
 <sup>[*]</sup> - optional.
 
-### Example
+#### Remove all listeners example:
 ```ts
 class MyAction {
     constructor(private value: string) { }
@@ -103,40 +103,31 @@ Emitter.removeAllListeners();
 ```
 
 
-## `listeners(actionClass): Function[]`
+### `listeners(actionClass): Function[]`
 Returns an array of listeners that are currently registered for the given action class.
 
-### Arguments
+#### Arguments
 | Argument      | Type       | Description                 |
 |---------------|------------|-----------------------------|
 | `actionClass` | `Function` | Action class function.      |
 
 
-### Example
+#### Listeners list example:
 ```ts
-class Action {
-    constructor(private value: string) { }
-    public get Value() {
-        return this.value;
-    }
-}
-
-Emitter.removeAllListeners(Action);
-// Or
-Emitter.removeAllListeners();
+let listenersList = Emitter.listeners();
 ```
 
 
-## `emit(action): void`
+### `emit(action): void`
 Emits an action event with the given data. All callbacks that are listening to the particular action event will be notified.
 
-### Arguments
+#### Arguments
 | Argument      | Type      | Description                 |
 |---------------|-----------|-----------------------------|
 | `action`      | `TAction` | Action class instance.      |
 
 
-### Example
+#### Action emit example:
 ```ts
 class MyAction {
     constructor(private value: string) { }
@@ -150,7 +141,7 @@ Emitter.emit<MyAction>(new MyAction("value"));
 Emitter.emit(new MyAction("value"));
 ```
 
-# Debuging
+## Debuging
 You can listen to all actions with `AnyAction` class. If you registered to listen to this action with `once`, the subscription remover will not work.
 ```ts
 import { AnyAction } from "action-emitter";
@@ -161,5 +152,5 @@ Emitter.addListener(AnyAction, anyAction => {
 ```
 
 
-# License
+## License
 Released under the [MIT license](LICENSE).

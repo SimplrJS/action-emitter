@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("fbemitter")) : factory(root["fbemitter"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -99,6 +99,12 @@ exports.AnyAction = AnyAction;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __assign = (this && this.__assign) || Object.assign || function(t) {
@@ -110,7 +116,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fbemitter_1 = __webpack_require__(3);
+var fbemitter_1 = __webpack_require__(1);
 var any_action_1 = __webpack_require__(0);
 var EVENT_TYPE_PREFIX = "ACTION_EMMITER";
 var ActionEmitter = (function () {
@@ -205,6 +211,9 @@ var ActionEmitter = (function () {
         this.actionsList = new Array();
         this.uniqueEventTypeNumber = 0;
     };
+    ActionEmitter.prototype.isValidFunction = function (maybeFunction) {
+        return typeof maybeFunction === "function";
+    };
     /**
      * Register a specific callback to be called on a particular action event.
      * A subscription is returned that can be called to remove the listener.
@@ -213,6 +222,12 @@ var ActionEmitter = (function () {
      * @param listener {ListenerFunction<TAction>} Listener callback function.
      */
     ActionEmitter.prototype.addListener = function (actionClass, listener) {
+        if (!this.isValidFunction(actionClass)) {
+            throw new Error("ActionEmitter.addListener(): `actionClass` is not a class or function.");
+        }
+        if (!this.isValidFunction(listener)) {
+            throw new Error("ActionEmitter.addListener(): `listener` is not a function.");
+        }
         var foundActionDetails = this.searchActionDetailsByActionClass(actionClass);
         if (foundActionDetails == null) {
             var index = this.actionsList.push(this.createNewActionDetails(actionClass)) - 1;
@@ -232,6 +247,9 @@ var ActionEmitter = (function () {
      * @param action {TAction} Action class instance.
      */
     ActionEmitter.prototype.emit = function (action) {
+        if (typeof action !== "object") {
+            throw new Error("ActioEmiter.emit(): `action` is not a proper object.");
+        }
         var foundAction = this.searchActionDetailsByAction(action);
         if (foundAction != null) {
             this.fbEmmiter.emit(foundAction.EventType, action);
@@ -263,6 +281,12 @@ var ActionEmitter = (function () {
      */
     ActionEmitter.prototype.once = function (actionClass, listener) {
         var _this = this;
+        if (!this.isValidFunction(actionClass)) {
+            throw new Error("ActionEmitter.once(): `actionClass` is not a class or function.");
+        }
+        if (!this.isValidFunction(listener)) {
+            throw new Error("ActionEmitter.once(): `listener` is not a function.");
+        }
         var foundActionDetails = this.searchActionDetailsByActionClass(actionClass);
         if (foundActionDetails == null) {
             var index = this.actionsList.push(this.createNewActionDetails(actionClass)) - 1;
@@ -309,21 +333,17 @@ exports.ActionEmitter = ActionEmitter;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var action_emitter_1 = __webpack_require__(1);
+var action_emitter_1 = __webpack_require__(2);
 exports.ActionEmitter = action_emitter_1.ActionEmitter;
 var any_action_1 = __webpack_require__(0);
 exports.AnyAction = any_action_1.AnyAction;
+var fbemitter_1 = __webpack_require__(1);
+exports.EventSubscription = fbemitter_1.EventSubscription;
 
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ })
 /******/ ]);

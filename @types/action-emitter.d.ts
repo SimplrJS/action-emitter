@@ -51,6 +51,7 @@ export declare class ActionEmitter {
      *
      */
     private removeAllActionsListeners();
+    private isValidFunction(maybeFunction);
     /**
      * Register a specific callback to be called on a particular action event.
      * A subscription is returned that can be called to remove the listener.

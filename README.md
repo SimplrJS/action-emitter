@@ -149,7 +149,7 @@ class MyAction {
 
 const Emitter = new ActionEmitter();
 
-let subsciption = Emitter.once<MyAction>(MyAction, action => {
+let subsciption = Emitter.addListener<MyAction>(MyAction, action => {
     console.log(action.Value);
 });
 

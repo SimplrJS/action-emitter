@@ -24,7 +24,7 @@ const Emitter = new ActionEmitter();
 ### `constructor(): void`
 Create a new emitter instance.
 
-#### Emitter construction example
+#### Emitter construction example:
 ```ts
 const Emitter = new ActionEmitter();
 ```
@@ -39,7 +39,7 @@ Register a specific callback to be called on a particular action event. A subscr
 | `callback`    | `(action: TAction) => void` | Listener callback function. |
 
 
-#### Add listeners example
+#### Add listeners example:
 ```ts
 class MyAction {
     constructor(private value: string) { }
@@ -63,7 +63,7 @@ Similar to `addListener()` but the callback is removed after it is invoked once.
 | `actionClass` | `Function`                  | Action class function.      |
 | `callback`    | `(action: TAction) => void` | Listener callback function. |
 
-#### Add once listener example
+#### Add once listener example:
 ```ts
 class MyAction {
     constructor(private value: string) { }
@@ -88,7 +88,7 @@ Removes all of the registered listeners. If provide `actionClass`, only listener
 
 <sup>[*]</sup> - optional.
 
-#### Remove all listeners example
+#### Remove all listeners example:
 ```ts
 class MyAction {
     constructor(private value: string) { }
@@ -112,7 +112,7 @@ Returns an array of listeners that are currently registered for the given action
 | `actionClass` | `Function` | Action class function.      |
 
 
-#### Listeners list example
+#### Listeners list example:
 ```ts
 let listenersList = Emitter.listeners();
 ```
@@ -127,7 +127,7 @@ Emits an action event with the given data. All callbacks that are listening to t
 | `action`      | `TAction` | Action class instance.      |
 
 
-#### Action emit example
+#### Action emit example:
 ```ts
 class MyAction {
     constructor(private value: string) { }

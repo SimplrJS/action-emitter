@@ -74,6 +74,13 @@ export declare class ActionEmitter {
      */
     listeners(actionClass: Function): Array<Function>;
     /**
+     * Return listeners count that are currently registered for the given action class.
+     * If action class is not specified, method will return all registered actions listeners count.
+     *
+     * @param actionClass {Function} Action class function.
+     */
+    listenersCount(actionClass?: Function): number;
+    /**
      * Similar to addListener() but the callback is removed after it is invoked once.
      * A subscription is returned that can be called to remove the listener.
      *

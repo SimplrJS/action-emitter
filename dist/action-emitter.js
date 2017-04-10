@@ -273,6 +273,26 @@ var ActionEmitter = (function () {
         return [];
     };
     /**
+     * Return listeners count that are currently registered for the given action class.
+     * If action class is not specified, method will return all registered actions listeners count.
+     *
+     * @param actionClass {Function} Action class function.
+     */
+    ActionEmitter.prototype.listenersCount = function (actionClass) {
+        if (actionClass != null) {
+            var actionDetails = this.searchActionDetailsByActionClass(actionClass);
+            return actionDetails == null ? 0 : actionDetails.ListenersLength;
+        }
+        else {
+            var count = 0;
+            for (var i = 0; i < this.actionsList.length; i++) {
+                var actionDetails = this.actionsList[i];
+                count += actionDetails.ListenersLength;
+            }
+            return count;
+        }
+    };
+    /**
      * Similar to addListener() but the callback is removed after it is invoked once.
      * A subscription is returned that can be called to remove the listener.
      *
@@ -296,6 +316,7 @@ var ActionEmitter = (function () {
             listener(action);
             _this.subscriptionRemover(foundActionDetails);
         };
+        foundActionDetails.ListenersLength++;
         var proxySubscription = this.fbEmmiter.once(foundActionDetails.EventType, proxyListener);
         return {
             context: proxySubscription.context,
@@ -338,11 +359,31 @@ exports.ActionEmitter = ActionEmitter;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var action_emitter_1 = __webpack_require__(2);
-exports.ActionEmitter = action_emitter_1.ActionEmitter;
 var any_action_1 = __webpack_require__(0);
-exports.AnyAction = any_action_1.AnyAction;
 var fbemitter_1 = __webpack_require__(1);
 exports.EventSubscription = fbemitter_1.EventSubscription;
+var Test = (function () {
+    function Test() {
+    }
+    return Test;
+}());
+var Emitter = new action_emitter_1.ActionEmitter();
+Emitter.once(any_action_1.AnyAction, function (action) {
+    console.log("ANY ACTION ONCE: ", action);
+});
+Emitter.addListener(any_action_1.AnyAction, function (action) {
+    console.log("ANY ACTION: ", action);
+});
+Emitter.addListener(any_action_1.AnyAction, function (action) {
+    console.log("ANY ACTION: ", action);
+});
+Emitter.addListener(Test, function (action) {
+    console.log("TEST ACTION: ", action);
+});
+Emitter.once(Test, function (action) {
+    console.log("TEST ACTION: ", action);
+});
+console.log(Emitter.listenersCount());
 
 
 /***/ })

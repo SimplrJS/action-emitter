@@ -75,7 +75,7 @@ export declare class ActionEmitter {
     listeners(actionClass: Function): Array<Function>;
     /**
      * Return listeners count that are currently registered for the given action class.
-     * If action class is not specified, method will return all registered actions listeners count.
+     * If action class is not specified, method will return all registered action listeners count.
      *
      * @param actionClass {Function} Action class function.
      */

@@ -273,6 +273,26 @@ var ActionEmitter = (function () {
         return [];
     };
     /**
+     * Return listeners count that are currently registered for the given action class.
+     * If action class is not specified, method will return all registered action listeners count.
+     *
+     * @param actionClass {Function} Action class function.
+     */
+    ActionEmitter.prototype.listenersCount = function (actionClass) {
+        if (actionClass != null) {
+            var actionDetails = this.searchActionDetailsByActionClass(actionClass);
+            return actionDetails != null ? actionDetails.ListenersLength : 0;
+        }
+        else {
+            var count = 0;
+            for (var i = 0; i < this.actionsList.length; i++) {
+                var actionDetails = this.actionsList[i];
+                count += actionDetails.ListenersLength;
+            }
+            return count;
+        }
+    };
+    /**
      * Similar to addListener() but the callback is removed after it is invoked once.
      * A subscription is returned that can be called to remove the listener.
      *
@@ -296,6 +316,7 @@ var ActionEmitter = (function () {
             listener(action);
             _this.subscriptionRemover(foundActionDetails);
         };
+        foundActionDetails.ListenersLength++;
         var proxySubscription = this.fbEmmiter.once(foundActionDetails.EventType, proxyListener);
         return {
             context: proxySubscription.context,

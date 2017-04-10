@@ -118,6 +118,32 @@ let listenersList = Emitter.listeners();
 ```
 
 
+### `listenersCount(actionClass): number`
+Return listeners count that are currently registered for the given action class. 
+If action class is not specified, method will return all registered action listeners count.
+
+#### Arguments
+| Argument                    | Type       | Description                 |
+|-----------------------------|------------|-----------------------------|
+| `actionClass`<sup>[*]</sup> | `Function` | Action class function.      |
+
+<sup>[*]</sup> - optional.
+
+#### Listeners list example:
+```ts
+class MyAction {
+    constructor(private value: string) { }
+    public get Value() {
+        return this.value;
+    }
+}
+
+let globalListenersCount = Emitter.listenersCount();
+// or 
+let listenersCount = Emitter.listenersCount(MyAction);
+```
+
+
 ### `emit(action): void`
 Emits an action event with the given data. All callbacks that are listening to the particular action event will be notified.
 
@@ -142,7 +168,7 @@ Emitter.emit(new MyAction("value"));
 ```
 
 ## Debuging
-You can listen to all actions with `AnyAction` class. If you registered to listen to this action with `once`, the subscription remover will not work.
+You can listen to all actions with `AnyAction` class.
 ```ts
 import { AnyAction } from "action-emitter";
 Emitter.addListener(AnyAction, anyAction => {

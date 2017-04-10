@@ -200,8 +200,11 @@ var ActionEmitter = (function () {
      * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.
      */
     ActionEmitter.prototype.removeActionListeners = function (actionDetails) {
-        actionDetails = undefined;
-        this.actionsList.filter(function (x) { return x != null; });
+        var index = this.actionsList.indexOf(actionDetails);
+        if (index === -1) {
+            return;
+        }
+        this.actionsList.splice(index, 1);
     };
     /**
      * Reset actionsList and start uniqueEventTypeNumber from zero.

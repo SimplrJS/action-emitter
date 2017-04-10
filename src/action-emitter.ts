@@ -101,9 +101,12 @@ export class ActionEmitter {
      *
      * @param foundActionDetails {ActionDetails} ActionDetails instance from actionList.
      */
-    private removeActionListeners(actionDetails: ActionDetails | undefined): void {
-        actionDetails = undefined;
-        this.actionsList.filter(x => x != null);
+    private removeActionListeners(actionDetails: ActionDetails): void {
+        let index = this.actionsList.indexOf(actionDetails);
+        if (index === -1) {
+            return;
+        }
+        this.actionsList.splice(index, 1);
     }
 
 

@@ -207,7 +207,7 @@ export class ActionEmitter {
     public listenersCount(actionClass?: Function): number {
         if (actionClass != null) {
             let actionDetails = this.searchActionDetailsByActionClass(actionClass);
-            return actionDetails == null ? 0 : actionDetails.ListenersLength;
+            return actionDetails != null ? actionDetails.ListenersLength : 0;
         } else {
             let count = 0;
             for (let i = 0; i < this.actionsList.length; i++) {

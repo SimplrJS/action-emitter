@@ -281,7 +281,7 @@ var ActionEmitter = (function () {
     ActionEmitter.prototype.listenersCount = function (actionClass) {
         if (actionClass != null) {
             var actionDetails = this.searchActionDetailsByActionClass(actionClass);
-            return actionDetails == null ? 0 : actionDetails.ListenersLength;
+            return actionDetails != null ? actionDetails.ListenersLength : 0;
         }
         else {
             var count = 0;
@@ -359,31 +359,11 @@ exports.ActionEmitter = ActionEmitter;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var action_emitter_1 = __webpack_require__(2);
+exports.ActionEmitter = action_emitter_1.ActionEmitter;
 var any_action_1 = __webpack_require__(0);
+exports.AnyAction = any_action_1.AnyAction;
 var fbemitter_1 = __webpack_require__(1);
 exports.EventSubscription = fbemitter_1.EventSubscription;
-var Test = (function () {
-    function Test() {
-    }
-    return Test;
-}());
-var Emitter = new action_emitter_1.ActionEmitter();
-Emitter.once(any_action_1.AnyAction, function (action) {
-    console.log("ANY ACTION ONCE: ", action);
-});
-Emitter.addListener(any_action_1.AnyAction, function (action) {
-    console.log("ANY ACTION: ", action);
-});
-Emitter.addListener(any_action_1.AnyAction, function (action) {
-    console.log("ANY ACTION: ", action);
-});
-Emitter.addListener(Test, function (action) {
-    console.log("TEST ACTION: ", action);
-});
-Emitter.once(Test, function (action) {
-    console.log("TEST ACTION: ", action);
-});
-console.log(Emitter.listenersCount());
 
 
 /***/ })
